@@ -1,0 +1,16 @@
+-- 创建时间 :
+-- 功能 : 
+
+
+function ClickFunc()
+    
+end
+
+function start()
+     print("lua start...")
+     
+     self:GetComponent("Button").onClick:AddListener(ClickFunc);
+end
+
+
+
