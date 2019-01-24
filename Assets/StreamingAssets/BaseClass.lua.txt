@@ -1,0 +1,28 @@
+--- Time: 2019/1/24 13:29
+--- Auth: ZJy
+--- 功能
+
+BaseClass = {}
+
+function  BaseClass:New(o)
+	o = o or {}
+	--self.Basesuper = BaseClass
+	setmetatable(o,self)
+	self.__index = self
+	return o
+end
+
+
+
+return BaseClass
+
+
+
+
+
+
+
+ 
+
+
+

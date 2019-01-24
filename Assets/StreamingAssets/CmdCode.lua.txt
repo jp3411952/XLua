@@ -1,0 +1,23 @@
+--- Time: 2019/1/24 11:15
+--- Auth: ZJy
+--- mvc 消息命令
+CmdCode = 
+{
+    None = 0,
+    StartGame = 1,
+    OpenLoginView = 2,
+    LogoutGame = 50000
+}
+
+
+
+
+
+
+
+
+
+ 
+
+
+

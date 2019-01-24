@@ -1,0 +1,51 @@
+--- Time: 2019/1/24 11:08
+--- Auth: ZJy
+--- 功能
+
+
+local MVCBaseMgr = {}
+function  MVCBaseMgr:New(o)
+    o = o or {}
+    o._member = {}
+    self.super = MVCBaseMgr
+    setmetatable(o,self)
+    self.__index = self
+    return o
+end
+
+function MVCBaseMgr:AddMember(name, mem)
+    self._member[name] = mem
+end
+
+function MVCBaseMgr:RemoveMember(name, mem)
+    if self._member[name] then
+        local cmd = table.remove(self._member,mem)
+        cmd = nil
+    end
+end
+
+
+function MVCBaseMgr:GetMember(name) 
+    return self._member[name]
+end
+
+--- 清除所有命令
+function MVCBaseMgr:RemoveAllMember()
+    for i,k in pairs(self._member) do
+        self._member[i] = nil
+    end
+    self._member = nil
+end
+
+
+return MVCBaseMgr
+
+
+
+
+
+
+ 
+
+
+

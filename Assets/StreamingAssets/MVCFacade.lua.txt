@@ -1,0 +1,38 @@
+--- facade接口
+
+
+local MVCBaseMgr = require('MVCBaseMgr')
+local MVCFacade = BaseClass:New()
+local thisFacade = nil
+
+
+--- 获取mvc接口，全局最好唯一
+function   GetMvcFacade()
+	if thisFacade == nil then
+		thisFacade = MVCFacade:New( {_cmdMgr = MVCBaseMgr:New(),_proxyMgr=MVCBaseMgr:New(),_mediatorMgr =MVCBaseMgr:New()})
+	end
+	return thisFacade
+end
+
+function  MVCFacade:Init(o)
+
+end
+
+
+function MVCFacade:AddCmd(cmdcode,cmd)
+	self._cmdMgr.AddMember(cmdcode,cmd)
+end
+
+
+--- 重设自己清除各个管理者的
+function MVCFacade:RestMe()
+	
+	self._cmdMgr.RemoveAllMember()
+	self._proxyMgr.RemoveAllMember()
+	self._mediatorMgr.RemoveAllMember()
+end
+
+
+
+
+return MVCFacade

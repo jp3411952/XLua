@@ -1,0 +1,25 @@
+--- Time: 2019/1/24 14:41
+--- Auth: ZJy
+--- 功能
+
+local MvcFacade = nil
+
+function   StartGame()
+	if MvcFacade == nil then
+		MvcFacade = GetMvcFacade()
+	end
+	
+	MvcFacade:Init()
+end
+
+
+
+function LogoutGame()
+	
+end
+
+
+ 
+
+
+

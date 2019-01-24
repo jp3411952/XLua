@@ -1,0 +1,22 @@
+--- Time: 2019/1/24 14:56
+--- Auth: ZJy
+--- 功能
+
+Observer = BaseClass:New()
+
+function  Observer:OnNotifi(sender,param)
+	
+end
+
+
+return Observer
+
+
+
+
+
+
+ 
+
+
+

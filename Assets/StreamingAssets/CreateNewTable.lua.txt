@@ -1,0 +1,19 @@
+--- Time: 2019/1/23 17:30
+--- Auth: ZJy
+--- 功能  主要提供给C#调用
+
+
+
+function CreateLoginView(go)
+    return require('LoginView'):New({slefgo = go})
+end
+
+
+
+
+
+
+ 
+
+
+

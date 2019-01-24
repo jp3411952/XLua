@@ -1,0 +1,82 @@
+--- Time: 2019/1/23 13:48
+--- Auth: ZJy
+--- 功能
+
+print("LuaHaviour")
+
+local LuaBaseView = {}
+
+--__index 和__newindex都是只有当表中访问的域不存在时候才起作用
+function  LuaBaseView:New(o)
+    o = o or {}
+    self.objs ={}
+    self.super = LuaBaseView
+    setmetatable(o,self)
+    self.__index = self
+    self.__index.get_Item = function(t, index)
+        return t.objs[index]
+    end
+    self.__index.set_Item = function(t, index, value)
+        -- print("set_Item",index,value)
+        t.objs[index] = value
+        -- print("self.objs[index]",self.objs[index])
+    end
+    --self.__index = function(t,k)
+    --    local feild = self[k]
+    --    if feild == nil then
+    --        if LuaBaseView.objs[k] then
+    --            return LuaBaseView.objs[k]  -- 获取obj
+    --        end
+    --    else
+    --        return self[k]
+    --    end
+    --end
+
+    --self.__newindex = function(t,k,v)
+    --    local feild = self[k]
+    --    if feild == nil then
+    --        LuaBaseView.objs[k]= v
+    --    end
+    --end
+    return o
+end
+
+
+function LuaBaseView:Awake()
+
+end
+
+function LuaBaseView:Start()
+    
+end
+
+function LuaBaseView:Update()
+
+end
+
+function LuaBaseView:OnDestroy()
+    for i,k in pairs(self.objs) do
+        print("LuaBaseView:OnDestroy",i,k)
+        self.objs[i] = nil
+    end
+    self.objs = nil
+    print("LuaBaseViewOnDestroy")
+end
+
+
+function LuaBaseView:Test()
+    print("LuaBaseViewTest")
+end
+ 
+
+return LuaBaseView
+
+
+
+
+
+
+ 
+
+
+

@@ -1,0 +1,26 @@
+--- Time: 2019/1/24 11:24
+--- Auth: ZJy
+--- 功能
+
+
+local SampleCmd = BaseClass:New()
+
+
+
+function SampleCmd:Execute(sender,param)
+    
+end
+
+
+
+return SampleCmd
+
+
+
+
+
+
+ 
+
+
+

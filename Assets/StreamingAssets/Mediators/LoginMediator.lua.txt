@@ -1,0 +1,37 @@
+--- Time: 2019/1/24 17:22
+--- Auth: ZJy
+--- 功能
+
+local LoginMediator = Observer:New()
+
+function LoginMediator:Init(o)
+    self.Name = "LoginMediator"
+end
+
+
+---监听的命令
+function LoginMediator:ListenCmd(cmdcode,param)
+	if cmdcode == CmdCode.OpenLoginView then
+		
+	end
+end
+
+
+function LoginMediator:GetListenCmds()
+	return {CmdCode.OpenLoginView}
+end
+function LoginMediator:Update()
+
+end
+
+return LoginMediator
+
+
+
+
+
+
+ 
+
+
+

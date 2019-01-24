@@ -1,0 +1,46 @@
+--- Time: 2019/1/24 11:35
+--- Auth: ZJy
+--- 功能创建多重继承关系
+
+--- 在多个table里面查找key 
+function search(classes, key)
+    for i = 1, #classes do
+        local value = classes[i][key]
+        if value then
+            return value
+        end
+    end
+end
+
+--- 绑定继承关系
+function CreateClass(...)
+    local parents ={...}
+    local child ={}
+    -- 设置类的元表                                       -- 在其他table里面查找
+    setmetatable(child,{ __index = function(table, key)  return search(parents, key) end})
+    child.__index = child
+    -- 给类新增一个new函数，用于创建对象
+    
+    function child:New(o)
+        o = o or {}
+        setmetatable(o, child)
+        return o
+    end
+    
+    -- 返回这个继承了多个类的子类
+    return child
+
+end
+
+
+
+
+
+
+
+
+
+ 
+
+
+

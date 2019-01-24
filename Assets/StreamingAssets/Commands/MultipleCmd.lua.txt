@@ -1,0 +1,45 @@
+--- Time: 2019/1/24 11:27
+--- Auth: ZJy
+--- 功能 多个命令
+
+
+local SampleCmd = require('SampleCmd')
+
+local MultipleCmd = SampleCmd:New({subCmd = {}})
+
+
+
+function MultipleCmd:Execute(sender,param)
+	for i,cmd in pairs(self.subCmd) do
+		cmd.Execute(sender,param)
+	end
+end
+
+--- 添加子命令
+function MultipleCmd:AddSubCmd(cmdcode,Cmd)
+	if self.subCmd[cmdcode] then
+		self.subCmd[cmdcode] = nil
+	end
+	self.subCmd[cmdcode] = Cmd
+end
+
+
+function MultipleCmd:RemoveSubCmd(cmdcode)
+	if self.subCmd[cmdcode] then
+		self.subCmd[cmdcode] = nil
+	end
+	table.remove(self.subCmd,cmdcode)
+end
+
+
+return MultipleCmd
+
+
+
+
+
+
+ 
+
+
+

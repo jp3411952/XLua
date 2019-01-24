@@ -1,0 +1,30 @@
+--- Time: 2019/1/24 17:29
+--- Auth: ZJy
+--- 功能
+
+local AccountProxy = BaseClass:New()
+
+function AccountProxy:Init(name,o)
+	self.Name = "AccountProxy"
+	self.Data = o or {}
+end
+
+function AccountProxy:GetData()
+	
+end
+
+function AccountProxy:Rest()
+	self.Data = nil
+end
+
+return AccountProxy
+
+
+
+
+
+
+ 
+
+
+

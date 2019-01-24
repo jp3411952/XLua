@@ -4,7 +4,17 @@
 --- DateTime: 2019/1/18 15:38
 ---
 
-
-require('AFacade')
+require('GameEvent')
+require('BaseClass')
+require('MVCFacade')
 require('One')
+require('LuaBaseView')
+require('LoginView')
+
+
+
+
+
+require('CreateNewTable')
+require('EndRequire')
 
