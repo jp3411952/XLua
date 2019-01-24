@@ -1,35 +1,77 @@
 --- facade接口
 
-
-local MVCBaseMgr = require('MVCBaseMgr')
+-- 返回两个Mgr
+local Mgrs = require('MVCBaseMgr')
+local MVCBaseMgr = Mgrs.MVCBaseMgr
+local observerMgr = Mgrs.observerMgr
+-- 单独定义观察者管理者方便重写代码
 local MVCFacade = BaseClass:New()
 local thisFacade = nil
-
+local StartGameCmd = require('StartGameCmd')
 
 --- 获取mvc接口，全局最好唯一
 function   GetMvcFacade()
 	if thisFacade == nil then
-		thisFacade = MVCFacade:New( {_cmdMgr = MVCBaseMgr:New(),_proxyMgr=MVCBaseMgr:New(),_mediatorMgr =MVCBaseMgr:New()})
+		thisFacade = MVCFacade:New( {
+			_cmdMgr = MVCBaseMgr:New(),
+			_proxyMgr=MVCBaseMgr:New(),
+			_mediatorMgr =MVCBaseMgr:New(),
+			_ObserverMgr = observerMgr})
 	end
 	return thisFacade
 end
 
-function  MVCFacade:Init(o)
-
+--- 初始化
+function  MVCFacade:Init(o) 
+	self:AddCmd(CmdCode.StartGame,StartGameCmd:New())
 end
 
-
+--- 添加命令
 function MVCFacade:AddCmd(cmdcode,cmd)
+	if self._cmdMgr:GetMember(cmdcode) then
+		return
+	end
 	self._cmdMgr.AddMember(cmdcode,cmd)
+end
+--- 添加中介者
+function MVCFacade:AddMediator(name,mediator)
+	if self._mediatorMgr:GetMember(name) then
+		return
+	end
+	local cmds =  mediator:GetListenCmds() -- 获取需要监听的命令
+	for _,code in ipairs(cmds) do
+		self:RigisterObserver(code,mediator)
+	end
+	self._mediatorMgr.AddMember(name,mediator)
+end
+
+function MVCFacade:RigisterObserver(cmdcode,observer)
+	local observers = self._ObserverMgr:GetMember(cmdcode) -- 成员为空证明没有注册
+	if observers == nil then
+		observers = {}    -- 成员新建列表
+	end
+	table.insert(observers,observer) -- 向列表里面插入数据
+	self._ObserverMgr:AddMember(cmdcode,observers) -- 然后写回数据
+end
+
+function MVCFacade:RemoveObserver(cmdcode,observer)
+	
+end
+
+function MVCFacade:AddProxy(name,proxy)
+	if self._proxyMgr:GetMember(name) then
+		return
+	end
+	self._proxyMgr:AddMember(name,proxy)
 end
 
 
 --- 重设自己清除各个管理者的
 function MVCFacade:RestMe()
-	
-	self._cmdMgr.RemoveAllMember()
-	self._proxyMgr.RemoveAllMember()
-	self._mediatorMgr.RemoveAllMember()
+	self._cmdMgr:RemoveAllMember()
+	self._proxyMgr:RemoveAllMember()
+	self._mediatorMgr:RemoveAllMember()
+	self._ObserverMgr:RemoveAllMember()
 end
 
 

@@ -8,6 +8,7 @@ function   StartGame()
 	if MvcFacade == nil then
 		MvcFacade = GetMvcFacade()
 	end
+	print('luastartgame')
 	
 	MvcFacade:Init()
 end

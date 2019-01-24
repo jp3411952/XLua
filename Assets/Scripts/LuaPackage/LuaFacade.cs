@@ -119,7 +119,8 @@ public class LuaFacade
 
     public void CallLuaDelegate(LuaActionKey key)
     {
-        
+        Action ac = GetDelegate(key);
+        ac();
     }
     
     public void AddDelegate(LuaActionKey key, Action action)
@@ -144,7 +145,7 @@ public class LuaFacade
     
     public  void DeleteMe()
     {
-      
+        CleanLuaDelegate();
         _lEnv.Dispose();
     }
     

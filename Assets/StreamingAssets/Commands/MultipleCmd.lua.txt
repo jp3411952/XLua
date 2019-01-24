@@ -4,7 +4,6 @@
 
 
 local SampleCmd = require('SampleCmd')
-
 local MultipleCmd = SampleCmd:New({subCmd = {}})
 
 

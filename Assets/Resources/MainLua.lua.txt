@@ -6,6 +6,7 @@
 
 require('GameEvent')
 require('BaseClass')
+require('Observer')
 require('MVCFacade')
 require('One')
 require('LuaBaseView')

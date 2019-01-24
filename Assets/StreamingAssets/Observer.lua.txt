@@ -4,7 +4,7 @@
 
 Observer = BaseClass:New()
 
-function  Observer:OnNotifi(sender,param)
+function  Observer:OnNotify(sender,param)
 	
 end
 

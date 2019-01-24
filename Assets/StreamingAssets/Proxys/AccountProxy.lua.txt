@@ -3,14 +3,13 @@
 --- 功能
 
 local AccountProxy = BaseClass:New()
-
+AccountProxy.Name = 'AccountProxy'
 function AccountProxy:Init(name,o)
-	self.Name = "AccountProxy"
-	self.Data = o or {}
+		
 end
 
 function AccountProxy:GetData()
-	
+	return self.Data
 end
 
 function AccountProxy:Rest()

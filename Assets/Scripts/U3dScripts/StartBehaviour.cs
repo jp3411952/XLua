@@ -12,7 +12,7 @@ public class StartBehaviour : MonoBehaviour
     {
         DontDestroyOnLoad(gameObject);
         luaenv =  LuaFacade.Instance.GetLuaEvn();
-       
+        LuaFacade.Instance.CallLuaDelegate(LuaActionKey.StartGame);
             Debug.Log("Game Start");
     }
 

@@ -1,0 +1,32 @@
+-- 创建时间 :
+-- 功能 : 
+
+
+local function search (k, plist)
+	for i=1, table.getn(plist) do
+		local v = plist[i][k] -- try 'i'-th superclass
+		if v then return v end
+	end
+end
+--- 创建多重继承
+function createClass (...)
+	local c = {} -- new class
+	-- 设置__ __index 收索所有的父对象
+	setmetatable(c, {__index = function (t, k)
+		local arg = { ... }
+		return search(k, arg)
+	end})
+	-- __index 设置为c //作为其他对象的基础对象
+	c.__index = c
+	-- 闭包 为其他对象提供new 方法 并以 c对象
+	function c:new (o)
+		o = o or {}
+		setmetatable(o, c)
+		return o
+	end
+	
+	return c;
+end		
+
+
+

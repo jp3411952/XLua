@@ -1,8 +1,8 @@
 --- Time: 2019/1/24 17:34
 --- Auth: ZJy
 --- 功能
-
-local StartGameCmd = BaseClass:New()
+local SampleCmd = require('SampleCmd')
+local StartGameCmd =SampleCmd:New()
 
 function StartGameCmd:Execute(sender,param)
 		

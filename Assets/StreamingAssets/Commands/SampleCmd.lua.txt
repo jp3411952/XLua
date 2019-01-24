@@ -4,9 +4,7 @@
 
 
 local SampleCmd = BaseClass:New()
-
-
-
+local Facade= GetMvcFacade()
 function SampleCmd:Execute(sender,param)
     
 end
